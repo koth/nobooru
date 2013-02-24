@@ -39,3 +39,6 @@ nosetests.xml
 
 venv
 *.db
+
+# vim swap files
+*.swp
