@@ -5,7 +5,7 @@
 <div id="metabar-container" class="-container-fluid">
     <ul class="metabar">
         <li class="">
-            Artist: <strong>The Weaver</strong>
+            Artist: <strong>{{ artist.name }}</strong>
         </li>
         <li class="">
 
@@ -26,7 +26,7 @@
         <li class="">
 
             <strong>
-                406x454
+                {{ image.width }}x{{ image.height }}
             </strong>
             PNG 27kB
 
@@ -43,7 +43,7 @@
 
             Uploaded by
             <strong>
-                Horsefly
+                {{ uploader.name }}
             </strong>
             13 days ago
 
@@ -82,10 +82,10 @@
                 <li class="pull-left">
                     <dl id="metadata-large" class="dl-horizontal">
                         <dt>source</dt>
-                        <dd>http://deviantart.com/dddddddddddddddddddddd</dd>
+                        <dd>{{ image.source_url }}</dd>
 
                         <dt>artist</dt>
-                        <dd><a href="#">The Weaver</a></dd>
+                        <dd><a href="#">{{ artist.name }}</a></dd>
 
                         <dt>score</dt>
                         <dd>35 (36 <span class="icon-arrow-up"></span>, 1 <span class="icon-arrow-down"></span>)</dd>
@@ -113,8 +113,7 @@
                         <dt>description</dt>
                         <dd>
                             <div>
-                                <p class="lead text-left">What a lovely group of kitties. I bet you could snuggle them
-                                    all day.</p>
+                                <p class="lead text-left">{{ image.description }}</p>
                             </div>
                         </dd>
                     </dl>
