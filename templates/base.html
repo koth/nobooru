@@ -1,4 +1,10 @@
 {% extends "bootstrap_responsive.html" %}
 {% import "bootstrap_wtf.html" as wtf %}
 
+{% block style %}
+    {{ super() }}
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet" />
+{% endblock style %}
+
 {% block title %}nobooru - {% block title_suffix %}high quality chicken dinner website{% endblock title_suffix %}{% endblock title %}
