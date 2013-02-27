@@ -15,6 +15,9 @@ def create_app(config="config"):
     app = Flask(__name__)
     app.config.from_object(config)
 
+    from flask.ext.bootstrap import Bootstrap
+    Bootstrap(app)
+
     from users.views import mod as users
     app.register_blueprint(users)
     from booru.views import mod as booru

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block content %}
+{% block body_content %}
     {% from "forms/macros.html" import render_field, render_form %}
     {% call render_form(form) %}
         {{ render_field(form.email, class="input text") }}
