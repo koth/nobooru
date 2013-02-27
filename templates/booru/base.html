@@ -8,7 +8,7 @@
         position: inherit;
     }
 </style>
-{% endblock %}
+{% endblock style %}
 
 {% block body_content %}
 <div id="top-navbar" class="navbar navbar-fixed-top hidden">
@@ -43,16 +43,14 @@
             </div>
         </div>
     </div>
-
 </div>
 
-{% block content %}
 <div class="container">
     <h1>{{ config.BOORU_NAME }} is best booru.</h1>
     <p>A magical world of tagged images awaits you.</p>
 </div> <!-- /container -->
-{% endblock content %}
 
+{% block content %}{% endblock content %}
 
 {% endblock body_content %}
 
