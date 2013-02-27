@@ -15,6 +15,9 @@ from database import *
 from users.models import *
 from users.forms import *
 import users.constants as USER
+
+from booru.models import *
+from booru.forms import *
 from app import *
 
 app = create_app()
