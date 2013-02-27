@@ -15,10 +15,12 @@ class Image(db.Model):
     modified_time = db.Column(db.DateTime, nullable=False)
     width = db.Column(db.Integer, nullable=False)
     height = db.Column(db.Integer, nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey("booru_artist.id"))
     source_url = db.Column(db.String, default="", nullable=False)
     deleted = db.Column(db.Boolean, default=False, nullable=False)
 
-    user = db.relationship("User", backref="image", uselist=False)
+    user = db.relationship("User", backref="image")
+    artist = db.relationship("Artist", backref="image")
 
 
 class Artist(db.Model):
