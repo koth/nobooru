@@ -20,5 +20,5 @@ def upload():
 
 @mod.route('/i/<image_id>')
 def image(image_id):
-    return render_template("booru/image-view.html", **locals())
+    return render_template("booru/image.html", **locals())
 

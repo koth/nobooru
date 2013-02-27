@@ -28,3 +28,5 @@ LOGIN_REQUIRED_MESSAGE = "You'll need to log in to access this page, chum."
 LOGIN_VIEW = "users.login"
 
 BOOTSTRAP_CUSTOM_CSS = True
+
+BOORU_NAME = "nobooru"
