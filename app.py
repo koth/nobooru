@@ -4,6 +4,7 @@ from flask import Flask
 import sys
 import os
 
+
 def create_app(config="config"):
     """
     Creates a new instance of the web application and registers a couple top-level routes.
@@ -43,6 +44,12 @@ def connect_db(app):
 def connect_login_manager(app):
     import login
     login.connect_app(app)
+
+
+def connect_converters(app):
+    import converters
+    converters.RegexConverter.register(app)
+
 
 def connect_all(app):
     """
