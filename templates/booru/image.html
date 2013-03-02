@@ -1,5 +1,69 @@
 {% extends "booru/base.html" %}
 
+{% block head %}
+{{ super() }}
+<style>
+    .metabar {
+        margin: 0px;
+        border-bottom: 1px solid;
+    }
+
+    .metabar li {
+        display: inline-block;
+        list-style-type: none;
+        padding: 8px 12px 8px 12px;
+        line-height: 14px;
+    }
+
+    .metabar li:last-child > a {
+        border-right: 0px;
+    }
+
+    #metadata-sidebar {
+        /*min-width: 5%;*/
+        /*max-width: 40%;*/
+        margin: auto;
+        display: inline-block;
+    }
+
+    #metadata-list > li {
+        list-style-type: none;
+        display: block;
+        float: left;
+        clear: left;
+    }
+
+    #metadata-large dt {
+        /*margin-left: auto;*/
+        width: auto;
+    }
+
+    #metadata-large dd {
+        margin-left: 100px;
+    }
+
+    #image-description-container p {
+        /*margin-left: 10px;*/
+        /*margin: auto;*/
+        /*width: 50%;*/
+    }
+
+    #image-description-container dl {
+        /*width: 50%;*/
+        margin: 0;
+        border: 0;
+    }
+
+    .horizontal-list > li {
+        list-style-type: none;
+        display: inline-block;
+    }
+
+
+</style>
+{% endblock head %}
+
+
 {% block content %}
 
 <div id="metabar-container" class="-container-fluid">
@@ -156,67 +220,6 @@
         </li>
     </ul>
 </div>
-
-
-<style>
-    .metabar {
-        margin: 0px;
-        border-bottom: 1px solid;
-    }
-
-    .metabar li {
-        display: inline-block;
-        list-style-type: none;
-        padding: 8px 12px 8px 12px;
-        line-height: 14px;
-    }
-
-    .metabar li:last-child > a {
-        border-right: 0px;
-    }
-
-    #metadata-sidebar {
-        /*min-width: 5%;*/
-        /*max-width: 40%;*/
-        margin: auto;
-        display: inline-block;
-    }
-
-    #metadata-list > li {
-        list-style-type: none;
-        display: block;
-        float: left;
-        clear: left;
-    }
-
-    #metadata-large dt {
-        /*margin-left: auto;*/
-        width: auto;
-    }
-
-    #metadata-large dd {
-        margin-left: 100px;
-    }
-
-    #image-description-container p {
-        /*margin-left: 10px;*/
-        /*margin: auto;*/
-        /*width: 50%;*/
-    }
-
-    #image-description-container dl {
-        /*width: 50%;*/
-        margin: 0;
-        border: 0;
-    }
-
-    .horizontal-list > li {
-        list-style-type: none;
-        display: inline-block;
-    }
-
-
-</style>
 
 {% endblock content %}
 
