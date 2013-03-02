@@ -10,6 +10,14 @@
 </style>
 {% endblock style %}
 
+
+{% block body %}
+{{ super() }}
+{% block final_script %}{% endblock %}
+{% endblock body %}
+
+
+
 {% block body_content %}
 <div id="top-navbar" class="navbar navbar-fixed-top hidden">
     <div class="navbar-inner">
