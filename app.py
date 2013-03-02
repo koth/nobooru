@@ -2,7 +2,6 @@
 from flask import render_template
 from flask import Flask
 import sys
-import os
 
 
 def create_app(config="config"):
@@ -19,10 +18,22 @@ def create_app(config="config"):
     from flask.ext.bootstrap import Bootstrap
     Bootstrap(app)
 
+    from flask.ext.uploads import configure_uploads, patch_request_class
+    patch_request_class(app, 5 * 1024 * 1024)
+
+    # Register users module
     from users.views import mod as users
     app.register_blueprint(users)
+
+    # Register booru module
     from booru.views import mod as booru
     app.register_blueprint(booru)
+
+    from booru.upload import images_upload_set
+    configure_uploads(app, images_upload_set)
+
+
+    # Some routes that we always want. There's probably a better place for these.
 
     @app.route("/test")
     def hello_world():
@@ -38,16 +49,19 @@ def create_app(config="config"):
 
 def connect_db(app):
     import database
+
     database.connect_app(app)
 
 
 def connect_login_manager(app):
     import login
+
     login.connect_app(app)
 
 
 def connect_converters(app):
     import converters
+
     converters.RegexConverter.register(app)
 
 
@@ -62,7 +76,7 @@ def connect_all(app):
     import inspect
     from utils import list_module_functions
 
-    own_name = inspect.stack()[1][3] # Name of the current function
+    own_name = inspect.stack()[1][3]  # Name of the current function
     for func in list_module_functions(sys.modules[__name__]):
         func_name = func.__name__
         if func_name.startswith("connect_") and func_name != own_name:

@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+{% import "wtf.html" as wtf %}
+
 {% block body_content %}
-    <div>lolwhat</div>
+    <h1>Upload da image!</h1>
+{#    {{ wtf.quick_form(form) }}#}
+    <form id="image-upload-form" action="." method="POST" class="form form-horizontal" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <input id="image" name="image" type="file" />
+        <input name="submit" type="submit" />
+    </form>
 {% endblock %}

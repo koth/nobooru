@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-import datetime
+from booru.forms import UploadImageForm
 from booru.models import Image, Artist
+from booru.upload import images_upload_set
+import config
 from flask import (
     Blueprint,
-    render_template,
-)
+    render_template
+    )
 from flask.ext.login import current_user
-from users.models import User
 
-mod = Blueprint('booru', __name__)
+mod = Blueprint('booru', __name__, static_folder=config.IMAGE_STORAGE_DIRECTORY)
 
 
 @mod.route('/')
@@ -18,7 +19,17 @@ def index():
 
 @mod.route('/upload/')
 def upload():
-    return render_template("booru/upload.html")
+    form = UploadImageForm()
+    return render_template("booru/upload.html", form=form)
+
+@mod.route('/upload/', methods=['POST'])
+def POST_upload():
+    form = UploadImageForm()
+    if form.validate_on_submit():
+        images_upload_set.save(form.image.file)
+        return "yay, uploaded " + form.image.file.filename
+    else:
+        return "nogo"
 
 
 @mod.route('/i/<int:image_id>')

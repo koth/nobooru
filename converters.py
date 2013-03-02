@@ -22,7 +22,7 @@ class RegexConverter(BaseConverter):
     def register(cls, app):
         """
         Register this converter with a Flask app.
-        
+
         :param app: Flask application to register with.
         """
         app.url_map.converters["regex"] = cls

@@ -7,7 +7,6 @@ import users.constants as USER
 # TODO: Look into using selenium for automated tests.
 
 
-
 class LoginForm(Form):
     html_id = "user-login-form"
 

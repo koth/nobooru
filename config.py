@@ -24,9 +24,16 @@ RECAPTCHA_OPTIONS = {"theme": "white"}
 
 BCRYPT_NUM_ROUNDS = 12
 
-LOGIN_REQUIRED_MESSAGE = "You'll need to log in to access this page, chum."
-LOGIN_VIEW = "users.login"
+UPLOADS_DEFAULT_DEST = "/var/www/uploads"
 
 BOOTSTRAP_CUSTOM_CSS = True
 
+LOGIN_REQUIRED_MESSAGE = "You'll need to log in to access this page, chum."
+LOGIN_VIEW = "users.login"
+
+# Booru specific stuff.
 BOORU_NAME = "nobooru"
+IMAGE_STORAGE_DIRECTORY = "/var/www/images"  # For dev only
+
+
+
