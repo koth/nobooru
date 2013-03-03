@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from database import db
+from datetime import datetime
+from database import db, SaveMixin
 
 
-class Image(db.Model):
+class Image(db.Model, SaveMixin):
     __tablename__ = "booru_image"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -11,8 +12,8 @@ class Image(db.Model):
     description = db.Column(db.Text(), default="", nullable=False)
     user_ip = db.Column(db.Integer)
     file_hash = db.Column(db.String(128), nullable=False)
-    upload_time = db.Column(db.DateTime, nullable=False)
-    modified_time = db.Column(db.DateTime, nullable=False)
+    upload_time = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    modified_time = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
     width = db.Column(db.Integer, nullable=False)
     height = db.Column(db.Integer, nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey("booru_artist.id"))
@@ -21,6 +22,12 @@ class Image(db.Model):
 
     user = db.relationship("User", backref="image")
     artist = db.relationship("Artist", backref="image")
+
+    def __init__(self, filename, description, source_url, user):
+        self.filename = filename
+        self.description = description
+        self.source_url = source_url
+        self.user = user
 
 
 class Artist(db.Model):

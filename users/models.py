@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-import re
-from sqlalchemy.exc import IntegrityError
 from flask.ext.login import UserMixin
 
 from crypto import generate_password_hash, password_matches_hash
-from database import db
-from database_errors import UniquenessViolation
+from database import db, SaveMixin
 import users.constants as USER
 
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin, SaveMixin):
     __tablename__ = "users_user"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -29,14 +26,6 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return password_matches_hash(password, self.password_hash)
-
-    def save(self):
-        db.session.add(self)
-        try:
-            db.session.commit()
-        except IntegrityError, err:
-            match = re.match(r"\(IntegrityError\) column (.*) is not unique", err.message)
-            raise UniquenessViolation(match.group(1))
 
     @staticmethod
     def get_by_email(email):

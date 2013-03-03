@@ -18,7 +18,7 @@ def create_app(config="config"):
     from flask.ext.bootstrap import Bootstrap
     Bootstrap(app)
 
-    from flask.ext.uploads import configure_uploads, patch_request_class
+    from flask.ext.uploads import patch_request_class
     patch_request_class(app, 5 * 1024 * 1024)
 
     # Register users module
@@ -29,6 +29,7 @@ def create_app(config="config"):
     from booru.views import mod as booru
     app.register_blueprint(booru)
 
+    from flask.ext.uploads import configure_uploads
     from booru.upload import images_upload_set
     configure_uploads(app, images_upload_set)
 
